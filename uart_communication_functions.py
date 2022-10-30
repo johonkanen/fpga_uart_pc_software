@@ -4,13 +4,17 @@ import numpy as np
 from matplotlib import pyplot
 
 uart_link = serial.Serial()
-uart_link.baudrate = 115200
+uart_link.baudrate = 5e6
 uart_link.timeout = 0.1
 uart_link.port = "COM16"
 uart_link.open()
-uart_link.set_buffer_size(rx_size=2**20, tx_size=None)
+uart_link.set_buffer_size(rx_size=2**20, tx_size=8)
 uart_link.reset_input_buffer()
 uart_link.reset_output_buffer()
+
+def clear_uart():
+    uart_link.reset_input_buffer()
+    uart_link.reset_output_buffer()
 
 ####################################
 def get_data_from_uart():
