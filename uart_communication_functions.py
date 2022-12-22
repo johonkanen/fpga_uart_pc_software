@@ -8,7 +8,7 @@ class uart_link:
         self.uart_object = serial.Serial()
         self.uart_object.baudrate = 5e6
         self.uart_object.timeout = 0.1
-        self.uart_object.port = "com19"
+        self.uart_object.port = port
         self.uart_object.open()
         self.uart_object.set_buffer_size(rx_size=2**20, tx_size=None)
         self.uart_object.reset_input_buffer()
