@@ -45,7 +45,6 @@ class uart_link:
         received_stream = np.arange(1,number_of_registers+1)
         for i in range(number_of_registers):
             received_stream[i] = self.get_stream_packet_from_uart()
-
         return received_stream
 
     def plot_data_from_address(self, address, number_of_registers):
