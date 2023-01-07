@@ -6,7 +6,7 @@ from matplotlib import pyplot
 class uart_link:
     def __init__(self, port, baud):
         self.uart_object = serial.Serial()
-        self.uart_object.baudrate = 5e6
+        self.uart_object.baudrate = baud
         self.uart_object.timeout = 0.1
         self.uart_object.port = port
         self.uart_object.open()
