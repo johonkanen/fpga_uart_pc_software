@@ -33,8 +33,8 @@ class uart_link:
 
     def get_stream_packet_from_uart(self):
         return int.from_bytes(self.uart_object.read(2), "big")
-    
-    def stream_data_from_address(self, address, number_of_registers):
+
+    def request_data_stream_from_address(self, address, number_of_registers):
         uart_message = 5
         self.uart_object.write(uart_message.to_bytes(1, "big"))
         uart_message = address
@@ -42,10 +42,15 @@ class uart_link:
         uart_message = number_of_registers 
         self.uart_object.write(uart_message.to_bytes(3, "big"))
 
+    def get_streamed_data(self, number_of_registers):
         received_stream = np.arange(1,number_of_registers+1)
         for i in range(number_of_registers):
             received_stream[i] = self.get_stream_packet_from_uart()
         return received_stream
+    
+    def stream_data_from_address(self, address, number_of_registers):
+        request_data_stream_from_address(self, address, number_of_registers)
+        return get_streamed_data(self, number_of_registers)
 
     def plot_data_from_address(self, address, number_of_registers):
         pyplot.plot(self.stream_data_from_address(address, number_of_registers)) 
