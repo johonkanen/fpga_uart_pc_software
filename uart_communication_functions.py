@@ -49,8 +49,8 @@ class uart_link:
         return received_stream
     
     def stream_data_from_address(self, address, number_of_registers):
-        request_data_stream_from_address(self, address, number_of_registers)
-        return get_streamed_data(self, number_of_registers)
+        self.request_data_stream_from_address(address, number_of_registers)
+        return self.get_streamed_data(number_of_registers)
 
     def plot_data_from_address(self, address, number_of_registers):
         pyplot.plot(self.stream_data_from_address(address, number_of_registers)) 
