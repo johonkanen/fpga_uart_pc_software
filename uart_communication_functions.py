@@ -18,9 +18,12 @@ class uart_link:
         data_from_uart = self.uart_object.read(5)
         return int.from_bytes(data_from_uart[3:5], "big")
 
-    def request_data_from_address(self, address):
+    def send_data_request_to_address(self, address):
         uart_message = address | 2 << 16
         self.uart_object.write(uart_message.to_bytes(3, "big"))
+
+    def request_data_from_address(self, address):
+        self.send_data_request_to_address(address)
         return self.get_data_from_uart()
 
     def write_data_to_address(self, address, data):
