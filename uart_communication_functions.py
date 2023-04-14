@@ -45,6 +45,14 @@ class uart_link:
         uart_message = number_of_registers 
         self.uart_object.write(uart_message.to_bytes(3, "big"))
 
+    def request_fpga_controlled_data_stream_from_address(self, address, number_of_registers):
+        uart_message = 6
+        self.uart_object.write(uart_message.to_bytes(1, "big"))
+        uart_message = address
+        self.uart_object.write(uart_message.to_bytes(2, "big"))
+        uart_message = number_of_registers 
+        self.uart_object.write(uart_message.to_bytes(3, "big"))
+
     def get_streamed_data(self, number_of_registers):
         received_stream = np.arange(1,number_of_registers+1)
         for i in range(number_of_registers):
