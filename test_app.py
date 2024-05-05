@@ -4,9 +4,13 @@ import sys
 # abs_path = os.path.dirname(os.path.realpath(__file__))
 # sys.path.append(abs_path + '/fpga_uart_pc_software/')
 
+# assume that first argument is the comport for example 
+# python test_app.py com7
+comport = sys.argv[1]
+
 from uart_communication_functions import *
 
-uart = uart_link("port19", 5e6)
+uart = uart_link(comport, 5e6)
 
 print("test reading data from hvhdl example interconnect")
 print("this should be 44252 : ", uart.request_data_from_address(99)) 
